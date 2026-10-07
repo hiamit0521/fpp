@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111a1b">
+  <title>IRONFALL // Island Conflict</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game">
+    <canvas id="view" aria-label="First-person view"></canvas>
+    <div id="vignette"></div>
+    <header id="topbar">
+      <div class="brand"><span class="brand-mark">I</span><div>IRONFALL <small>ISLAND CONFLICT</small></div></div>
+      <div id="match-info">LOBBY <span>IRONFALL ISLAND</span></div>
+      <div id="connection"><i></i><span>OFFLINE PRACTICE</span></div>
+    </header>
+    <aside id="minimap-wrap"><canvas id="minimap" width="200" height="150"></canvas><span>NORTH ↑</span></aside>
+    <section id="scoreboard"><b id="blue-score">0</b><span id="score-caption">TEAM SCORE</span><b id="red-score">0</b></section>
+    <div id="hit-marker">×</div>
+    <div id="damage-flash"></div>
+    <div id="center-message"></div>
+    <div id="hud">
+      <div class="health-block"><span>VITALS</span><div class="health-track"><i id="health-bar"></i></div><strong id="health-value">100</strong></div>
+      <div class="weapon-block"><span id="weapon-class">ASSAULT RIFLE</span><strong id="weapon-name">KESTREL</strong><small id="weapon-attachments">STOCK CONFIGURATION</small></div>
+      <div class="ammo-block"><strong id="ammo">30 <small>/ 150</small></strong><span id="reload-state">1 / 2  ·  SWITCH</span></div>
+    </div>
+    <section id="lobby" class="overlay">
+      <div class="lobby-panel">
+        <div class="eyebrow">SECTOR 07 — SOUTHERN REACH</div>
+        <h1>IRONFALL<br><span>ISLAND</span></h1>
+        <p class="intro">The island is contested. Pick your kit, choose a side, and take the ground.</p>
+        <div class="lobby-columns">
+          <section class="loadout">
+            <h2>FIELD KIT</h2>
+            <label>PRIMARY <select id="primary-select"></select></label>
+            <label>SECONDARY <select id="secondary-select"></select></label>
+            <label>OPTIC <select id="optic-select"><option value="iron">Iron sights</option><option value="reflex">Reflex · steadier aim</option><option value="scope">Scout glass · tighter aim</option></select></label>
+            <label>BARREL <select id="barrel-select"><option value="standard">Standard</option><option value="comp">Compensator · less recoil</option><option value="suppressor">Suppressor · quieter, shorter reach</option></select></label>
+            <label>GRIP <select id="grip-select"><option value="standard">Standard</option><option value="vertical">Vertical · steadier fire</option><option value="laser">Laser · tighter hipfire</option></select></label>
+            <label>GAME MODE <select id="mode-select"><option value="tdm">Team Deathmatch</option><option value="dom">Domination · 3 sites</option></select></label>
+          </section>
+          <section class="deployment">
+            <h2>DEPLOYMENT</h2>
+            <button id="practice-button" class="button-primary">PRACTICE MATCH <span>PLAY NOW ↗</span></button>
+            <div class="divider"><span>PRIVATE ROOM</span></div>
+            <button id="create-room-button" class="button-secondary">CREATE ROOM <span>GENERATE CODE</span></button>
+            <div class="join-row"><input id="room-code" maxlength="8" autocomplete="off" placeholder="ROOM CODE"><button id="join-room-button">JOIN</button></div>
+            <p id="room-hint">Share the room code with a friend. Your game host must be reachable over the network.</p>
+            <p id="lobby-error" role="status"></p>
+            <p class="controls-hint">WASD MOVE · MOUSE AIM · LMB / SPACE FIRE · 1 / 2 SWITCH · R RELOAD · SHIFT SPRINT</p>
+          </section>
+        </div>
+        <footer><span>IRONFALL ISLAND · 9 DISTINCT ZONES · 3 CONTROL SITES</span><span>ORIGINAL FICTIONAL GAME · TEMPORARY PRIMITIVE ART</span></footer>
+      </div>
+    </section>
+    <section id="results" class="overlay hidden">
+      <div class="results-panel"><div class="eyebrow">OPERATION COMPLETE</div><h2 id="result-title">MATCH COMPLETE</h2><p id="result-detail"></p><button id="return-button" class="button-primary">RETURN TO LOBBY <span>REDEPLOY ↗</span></button></div>
+    </section>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

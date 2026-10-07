@@ -1,0 +1,10 @@
+{
+  "name": "ironfall-island",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A dependency-free original first-person multiplayer combat game",
+  "scripts": {
+    "start": "python server.py",
+    "test": "python -m unittest discover -s tests -v"
+  }
+}
