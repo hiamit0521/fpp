@@ -28,12 +28,28 @@ SCORE_LIMIT = 30
 TICK_SECONDS = 0.05
 ROOM_CODE = re.compile(r"^[A-Z0-9]{4,8}$")
 _WALLS = MAP["walls"]
+_MAP_WIDTH = int(MAP["width"])
+_MAP_HEIGHT = int(MAP["height"])
+_WALL_GRID = [[False for _ in range(_MAP_WIDTH)] for _ in range(_MAP_HEIGHT)]
+for wx, wy, ww, wh in _WALLS:
+    x_start = max(0, int(math.floor(wx)))
+    x_end = min(_MAP_WIDTH, int(math.ceil(wx + ww)))
+    y_start = max(0, int(math.floor(wy)))
+    y_end = min(_MAP_HEIGHT, int(math.ceil(wy + wh)))
+    for y in range(y_start, y_end):
+        row = _WALL_GRID[y]
+        for x in range(x_start, x_end):
+            row[x] = True
 
 
 def is_blocked(x: float, y: float) -> bool:
-    if x < 0 or y < 0 or x >= MAP["width"] or y >= MAP["height"]:
+    if x < 0 or y < 0 or x >= _MAP_WIDTH or y >= _MAP_HEIGHT:
         return True
-    return any(wx <= x < wx + ww and wy <= y < wy + wh for wx, wy, ww, wh in _WALLS)
+    ix = int(math.floor(x))
+    iy = int(math.floor(y))
+    if ix < 0 or iy < 0 or ix >= _MAP_WIDTH or iy >= _MAP_HEIGHT:
+        return True
+    return _WALL_GRID[iy][ix]
 
 
 def collides(x: float, y: float, radius: float = 0.22) -> bool:
